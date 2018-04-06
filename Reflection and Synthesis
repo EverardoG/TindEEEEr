@@ -1,0 +1,37 @@
+Feedback and Decisions
+Question 1: What inputs might be best for creating a personalized pick up line? (pick 2)
+16 votes for Keywords
+13 votes for Name
+15 votes for Category
+1 suggestion to beta test them all
+1 suggestion to have a sentiment option
+1 suggestion to show or browse the most popular pickup lines
+These results are fairly well split indicating that we should spend our time trying to develop more than one of these approaches.  We will thus try to split up the work according to the type of input and fully explore these three options.  We also received some interesting feedback that users may be interested in exploring categories such as sentiment, which we will try to incorporate into our other category options using a sentiment analysis.  In addition we may try to include a browsing option for people who wish to manually find a pickup line.  
+Question 2: Where might be a good place to get data for our algorithm that we haven’t thought of? 
+Social Media: Reddit, Tumblr, Twitter, Facebook
+Websites with pickup line lists
+Wikipedia and Google
+People: Surveys, Tinder, Users, A pickup line contest
+Pickup line books
+Pastebin 
+Most of these sources are ones we have discussed prior to our technical interview; however, this has been good for validation of our process.  We currently have or are in the process of generating pickup lines from Reddit, various scraped websites, and surveys.  We have also attempted to search for pickup line books, but our searches did not yield promising results and it was abandoned.  One response also indicated that we should scrape from pastebin, a source we had previously not considered.  Pastebin does contain plenty of useful pickup lines so we will also work to include some data from the site.  
+Question 3: Any ideas for different ways our algorithm could work?
+Implement Machine learning
+Utilize dictionaries
+Expand the category into a list of keywords automatically. Engineer -> wifi, augmented reality, etc. This then lets you do a keyword search.  
+Response suggestions: yes or no response might not be as helpful as a scale 
+For training, people should swipe right on pickup lines they like and left on pickup lines they don’t. 
+Some of these suggestion we received were strategies we have considered using already and did not fully discuss in our presentation, like implementing machine learning, using word associations for category development and utilizing dictionaries.  We also heard that we should be open to receiving more than a binary result, which is a design decision we have debated, but that we might return to.  Additionally we were given the wonderful suggestion to model our binary training after the tinder swipe system which we will definitely attempt to incorporate into our model. 
+Question 4: What’s your favorite pickup line?
+Are you a cornfield? Cause I'm stalking you
+I wish I was your derivative so I could lie tangent in your curves
+Are you a Pokemon? Because I want a Pikachu
+I love the Google one!
+the ones I saw from the survey responses look golden.
+It's pants off o' clock, but my watch is 10 minutes fast
+If you were an endoplasmic reticulum how would you want me, smooth or rough?
+If you were a booger, I'd pick you first.
+Someone call life alert, cause I've fallen for you and I can't get up.
+This last question was much less about feedback and more about gathering more data.  The results have been included in our database though!
+Review Process Reflection
+We were very pleased with how our review went! We got feedback that validated our goal and methodology, as well as some that provided additional suggestions which we plan to implement.  During our presentation itself, we did not explicitly state our agenda, though after watching how much more smoothly the presentations which did state an agenda went, we will do so in the future technical reviews.  In the future we will also spend more time practicing so we spend less of our presentation tripping over our words and each other and instead spend more time discussing feedback.  We also learned during the presentation that we should provide more context, as without sharing any pickup lines, some of our audience members weren’t entirely sure what we were working on.  Fortunately, we were able to quickly remedy this by displaying some examples.  
