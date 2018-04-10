@@ -12,8 +12,7 @@ def get_word_list(file_name):
         line = line.lower()
         lines1.append(line)
     stringlines = ' '.join(lines1)
-    print(lines1)
     return lines1
 
 get_word_list('/home/libby/TindEEEEr/InClassSurveyPickuplines.txt')
-get_word_list('/home/libby/TindEEEEr/CarpeSurveysPickuplines.txt')
+get_word_list('/home/libby/TindEEEEr/CarpeSurveyPickuplines.txt')
