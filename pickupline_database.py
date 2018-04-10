@@ -92,6 +92,28 @@ html_str = load_html_str("pickup-lines.p")
 pickup_list_ever = create_pickup_list(html_str)
 pickup_list_in_class = get_word_list('/home/libby/TindEEEEr/InClassSurveyPickuplines.txt')
 pickup_list_carpe = get_word_list('/home/libby/TindEEEEr/CarpeSurveyPickuplines.txt')
-pickup_line_emma = get_word_list('/home/libby/TindEEEEr/database_emma.py')
+pickup_line_emma = get_word_list('/home/libby/TindEEEEr/emma_lines.txt')
 all_the_pickup_lines = pickup_list_ever + pickup_list_carpe + pickup_list_in_class + pickup_line_emma
-print(len(all_the_pickup_lines))
+
+def standardize_format(list):
+    lines1 = []
+    for pul in list:
+        pul = pul.strip(string.whitespace)
+        for i in range(32):
+            pul = pul.replace(string.punctuation[i],'')
+        pul = pul.replace('','')
+        pul = pul.lower()
+        lines1.append(pul)
+    stringlines = ' '.join(lines1)
+    return lines1
+new = standardize_format(all_the_pickup_lines)
+
+def eliminate_repeats(list):
+    n = []
+    for pul in list:
+        if pul not in n:
+            n.append(pul)
+    return n
+no_duplicates = eliminate_repeats(new)
+print(len(new))
+print(len(no_duplicates))
