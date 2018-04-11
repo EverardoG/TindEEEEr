@@ -89,11 +89,12 @@ then it should store it back into the file, overwrite what was already there
 """
 get_website('http://pickup-lines.net/','pickup-lines.p')
 html_str = load_html_str("pickup-lines.p")
-pickup_list_ever = create_pickup_list(html_str)
-pickup_list_in_class = get_word_list('/home/libby/TindEEEEr/InClassSurveyPickuplines.txt')
-pickup_list_carpe = get_word_list('/home/libby/TindEEEEr/CarpeSurveyPickuplines.txt')
-pickup_line_emma = get_word_list('/home/libby/TindEEEEr/emma_lines.txt')
-all_the_pickup_lines = pickup_list_ever + pickup_list_carpe + pickup_list_in_class + pickup_line_emma
+ever = create_pickup_list(html_str)
+in_class = get_word_list('/home/libby/TindEEEEr/InClassSurveyPickuplines.txt')
+carpe = get_word_list('/home/libby/TindEEEEr/CarpeSurveyPickuplines.txt')
+emma = get_word_list('/home/libby/TindEEEEr/emma_lines.txt')
+more = get_word_list('/home/libby/TindEEEEr/more.txt')
+all_the_pickup_lines = ever + carpe + in_class + emma + more
 
 def standardize_format(list):
     lines1 = []
@@ -115,5 +116,5 @@ def eliminate_repeats(list):
             n.append(pul)
     return n
 no_duplicates = eliminate_repeats(new)
-print(len(new))
+
 print(len(no_duplicates))
