@@ -117,4 +117,16 @@ def eliminate_repeats(list):
     return n
 no_duplicates = eliminate_repeats(new)
 
-print(len(no_duplicates))
+def get_grammars(list1, list2):
+    temp = standardize_format(list1)
+    indexes= []
+    for index, pul in enumerate(temp):
+        if pul in list2:
+            indexes.append(index)
+    new = []
+    for i in indexes:
+        new.append(list1[i])
+    return new
+
+good = get_grammars(all_the_pickup_lines, new)
+print(len(good))
