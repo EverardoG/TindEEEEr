@@ -74,10 +74,6 @@ Mean = ['If laughter is the best medicine, your face must be curing the world.',
  'We can always tell when you are lying. Your lips move.',
  'Are you always this stupid or is today a special occasion?']
 
- 
-
-
-
 
 linesgalore = ['Are you a magician? Because whenever I look at you, everyone else disappears!',
   'Did you sit in a pile of sugar? Cause you have a pretty sweet ass.',
@@ -584,9 +580,8 @@ Cheesy = [
  'You must be a broom, ‘cause you just swept me off my feet.',
  'My buddies bet me that I wouldn’t be able to start a conversation with the hottest person in the bar. Wanna buy some drinks with their money?',
  'Is it hot in here or is it just you?',
- 'Hello. Cupid called. He wants to tell you that he needs my heart back.',
+ 'Hello. Cupid called. He wants to tell you that he needs my heart back.']
 
-]
 
 MathLines = ['I wish I was your derivative so I could lie tangent to your curves.',
  'My love for you is like a concave up function because it is always increasing.',
@@ -657,7 +652,7 @@ FoodLines = ["You must be one spicy dish because you're making my heart burn.",
  "Baby, if you were a fruit you'd be a Fineapple.",
  'Do you sell hot dogs? Because you sure know how to make a wiener stand.',
  "Do you work at Little Caesars? Because you're Hot And I'm Ready.",
- 'Your cupcakes make my soufflÃ©s rise.',
+ 'Your cupcakes make my souffles rise.',
  'I might not be a Doritos Locos Taco, but I sure will spice up your life.',
  "You're looking so sweet, you've got my eyes glazed over like doughnuts.",
  "If you were a vegetable, you'd be a CUTE-cumber.",
