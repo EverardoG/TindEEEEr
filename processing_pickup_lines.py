@@ -1,5 +1,5 @@
 import pickle
 
-pickuplines = pickle.load(open('pickuplines.pickle', 'rb'))
+dict_of_pickup_lines = pickle.load(open('pickuplines.pickle', 'rb'))
 
-print(pickuplines)
+print(dict_of_pickup_lines)
