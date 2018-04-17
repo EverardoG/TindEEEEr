@@ -12,10 +12,7 @@ def get_word_list(file_name):
     lines1 = []
     for line in lines:
         line = line.strip(string.whitespace)
-        for i in range(32):
-            line = line.replace(string.punctuation[i],'')
         line = line.replace('','')
-        line = line.lower()
         lines1.append(line)
     stringlines = ' '.join(lines1)
     return lines1
@@ -90,10 +87,10 @@ then it should store it back into the file, overwrite what was already there
 get_website('http://pickup-lines.net/','pickup-lines.p')
 html_str = load_html_str("pickup-lines.p")
 ever = create_pickup_list(html_str)
-in_class = get_word_list('/home/libby/TindEEEEr/TextFiles/InClassSurveyPickuplines.txt')
-carpe = get_word_list('/home/libby/TindEEEEr/TextFiles/CarpeSurveyPickuplines.txt')
-emma = get_word_list('/home/libby/TindEEEEr/TextFiles/emma_lines.txt')
-more = get_word_list('/home/libby/TindEEEEr/TextFiles/more.txt')
+in_class = get_word_list('/home/libby/TindEEEEr/InClassSurveyPickuplines.txt')
+carpe = get_word_list('/home/libby/TindEEEEr/CarpeSurveyPickuplines.txt')
+emma = get_word_list('/home/libby/TindEEEEr/emma_lines.txt')
+more = get_word_list('/home/libby/TindEEEEr/more.txt')
 all_the_pickup_lines = ever + carpe + in_class + emma + more
 
 def standardize_format(list):
@@ -120,28 +117,35 @@ def no_repeats(list):
     two = eliminate_repeats(one)
     return two
 
-def trial(list):
-    compare = no_repeats(list)
-    keys1 = []
-    values1 = []
-    for index, pul in enumerate(compare):
-        keys1.append(index)
-        values1.append(pul)
-        dict1 = OrderedDict(zip(keys1, values1))
-    keys2 = []
-    values2 = []
+def generate_dict(list):
+    keys = []
+    values = []
     for index, pul in enumerate(list):
-        keys2.append(index)
-        values2.append(pul)
-        dict2 = OrderedDict(zip(keys2, values2))
-    n = []
-    for pul in dict1.values():
-        if pul not in dict2.values():
-            del dict1[pul]
-    # print(dict2.values())
-    # print(dict1.values())
-    # print(n)
-    return dict1
+        keys.append(index)
+        values.append(pul)
+        dict = OrderedDict(zip(keys,values))
+    return dict
+
+def trial(list):
+    list3 = standardize_format(list)
+    two = generate_dict(list)
+    three = generate_dict(list3)
+    indexes = []
+    lines = []
+    for k, v in three.items():
+        if v not in lines:
+            lines.append(v)
+            indexes.append(k)
+    r = dict(two)
+    for k,v in two.items():
+        if k not in indexes:
+            # print(r[k])
+            del r[k]
+    pul = r.values()
+    d = OrderedDict(zip(pul,[0 for x in range(0,len(pul))]))
+    return d
 
 attempt = trial(all_the_pickup_lines)
-# print(len(attempt))
+
+pickup_pickle = open('pickuplines.pickle','wb')
+pickle.dump(attempt, pickup_pickle)
