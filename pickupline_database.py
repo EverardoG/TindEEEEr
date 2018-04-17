@@ -2,9 +2,9 @@
 import urllib.request
 from bs4 import BeautifulSoup
 import os
-import sys
 import pickle
 import string
+from collections import OrderedDict
 
 def get_word_list(file_name):
     text = open(file_name,'r')
@@ -90,10 +90,10 @@ then it should store it back into the file, overwrite what was already there
 get_website('http://pickup-lines.net/','pickup-lines.p')
 html_str = load_html_str("pickup-lines.p")
 ever = create_pickup_list(html_str)
-in_class = get_word_list('/home/libby/TindEEEEr/InClassSurveyPickuplines.txt')
-carpe = get_word_list('/home/libby/TindEEEEr/CarpeSurveyPickuplines.txt')
-emma = get_word_list('/home/libby/TindEEEEr/emma_lines.txt')
-more = get_word_list('/home/libby/TindEEEEr/more.txt')
+in_class = get_word_list('/home/libby/TindEEEEr/TextFiles/InClassSurveyPickuplines.txt')
+carpe = get_word_list('/home/libby/TindEEEEr/TextFiles/CarpeSurveyPickuplines.txt')
+emma = get_word_list('/home/libby/TindEEEEr/TextFiles/emma_lines.txt')
+more = get_word_list('/home/libby/TindEEEEr/TextFiles/more.txt')
 all_the_pickup_lines = ever + carpe + in_class + emma + more
 
 def standardize_format(list):
@@ -107,7 +107,6 @@ def standardize_format(list):
         lines1.append(pul)
     stringlines = ' '.join(lines1)
     return lines1
-new = standardize_format(all_the_pickup_lines)
 
 def eliminate_repeats(list):
     n = []
@@ -115,18 +114,34 @@ def eliminate_repeats(list):
         if pul not in n:
             n.append(pul)
     return n
-no_duplicates = eliminate_repeats(new)
 
-def get_grammars(list1, list2):
-    temp = standardize_format(list1)
-    indexes= []
-    for index, pul in enumerate(temp):
-        if pul in list2:
-            indexes.append(index)
-    new = []
-    for i in indexes:
-        new.append(list1[i])
-    return new
+def no_repeats(list):
+    one = standardize_format(list)
+    two = eliminate_repeats(one)
+    return two
 
-good = get_grammars(all_the_pickup_lines, new)
-print(len(good))
+def trial(list):
+    compare = no_repeats(list)
+    keys1 = []
+    values1 = []
+    for index, pul in enumerate(compare):
+        keys1.append(index)
+        values1.append(pul)
+        dict1 = OrderedDict(zip(keys1, values1))
+    keys2 = []
+    values2 = []
+    for index, pul in enumerate(list):
+        keys2.append(index)
+        values2.append(pul)
+        dict2 = OrderedDict(zip(keys2, values2))
+    n = []
+    for pul in dict1.values():
+        if pul not in dict2.values():
+            del dict1[pul]
+    # print(dict2.values())
+    # print(dict1.values())
+    # print(n)
+    return dict1
+
+attempt = trial(all_the_pickup_lines)
+# print(len(attempt))
