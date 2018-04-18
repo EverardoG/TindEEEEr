@@ -6,8 +6,16 @@ import pickle
 import string
 from collections import OrderedDict
 
-def get_word_list(file_name):
-    text = open(file_name,'r')
+### Functions to read in pickup lines
+def read_text_file(file_path):
+    """Reads in whatever text file is passed in and return a list
+    of lines to be manipulated in future functionsself.
+    Args
+    file_path: the full file path of the text file to be read_text_file
+    Return values
+    lines1: the text file as a list of strings with the whitespace removed and
+    each string as a separate pickup line"""
+    text = open(file_path,'r')
     lines = list(text)
     lines1 = []
     for line in lines:
@@ -68,6 +76,12 @@ def create_pickup_list(html_str):
     return pickup_list
 
 def get_website(link,filename):
+    """
+    This should be able to go through all the pages of pickuplines.net and store all of the html code in a single file
+    it should initially create the file and store all of the first page code into it
+    then it should load the information from that file and modify it
+    then it should store it back into the file, overwrite what was already there
+    """
     exists = os.path.isfile(filename) #True if file exists, False if file doesn't exist
 
     if exists == False:
@@ -78,46 +92,46 @@ def get_website(link,filename):
             print(new_link)
             get_webpage(new_link,filename)
 
-"""
-This should be able to go through all the pages of pickuplines.net and store all of the html code in a single file
-it should initially create the file and store all of the first page code into it
-then it should load the information from that file and modify it
-then it should store it back into the file, overwrite what was already there
-"""
+### Uses functions defined above to import all pickup line files and combine them
+### into one list
 get_website('http://pickup-lines.net/','pickup-lines.p')
 html_str = load_html_str("pickup-lines.p")
 ever = create_pickup_list(html_str)
-in_class = get_word_list('/home/libby/TindEEEEr/InClassSurveyPickuplines.txt')
-carpe = get_word_list('/home/libby/TindEEEEr/CarpeSurveyPickuplines.txt')
-emma = get_word_list('/home/libby/TindEEEEr/emma_lines.txt')
-more = get_word_list('/home/libby/TindEEEEr/more.txt')
+in_class = read_text_file('/home/libby/TindEEEEr/InClassSurveyPickuplines.txt')
+carpe = read_text_file('/home/libby/TindEEEEr/CarpeSurveyPickuplines.txt')
+emma = read_text_file('/home/libby/TindEEEEr/emma_lines.txt')
+more = read_text_file('/home/libby/TindEEEEr/more.txt')
 all_the_pickup_lines = ever + carpe + in_class + emma + more
 
+### Functions to modify the list into a dictionary
 def standardize_format(list):
-    lines1 = []
+    """Removes whitespace, punctuation, and uppercase letters to standardize the
+    format across pickup line lists for ease of comparison
+    Args:
+    list of pickup lines as strings
+    Return Value:
+    list of pickup lines as strings sans whitespace, punctuation and capitalization
+    """
+    lines = []
     for pul in list:
         pul = pul.strip(string.whitespace)
         for i in range(32):
             pul = pul.replace(string.punctuation[i],'')
         pul = pul.replace('','')
         pul = pul.lower()
-        lines1.append(pul)
-    stringlines = ' '.join(lines1)
-    return lines1
-
-def eliminate_repeats(list):
-    n = []
-    for pul in list:
-        if pul not in n:
-            n.append(pul)
-    return n
-
-def no_repeats(list):
-    one = standardize_format(list)
-    two = eliminate_repeats(one)
-    return two
+        lines.append(pul)
+    stringlines = ' '.join(lines)
+    return lines
 
 def generate_dict(list):
+    """Creates a dictionary from the strings within the list and the index of each
+    string
+    Args:
+    list of pickup lines contained in strings
+    Return Value:
+    dictionary of pickup lines as values and the indeces of each pickup line within
+    the list as the keys
+    """
     keys = []
     values = []
     for index, pul in enumerate(list):
@@ -126,26 +140,34 @@ def generate_dict(list):
         dict = OrderedDict(zip(keys,values))
     return dict
 
-def trial(list):
-    list3 = standardize_format(list)
-    two = generate_dict(list)
-    three = generate_dict(list3)
+def remove_copies(list):
+    """Uses previous two functions to take the original list of pickup lines and
+    remove all duplicate lines
+    Args:
+    list of pickup lines contained in strings
+    Return Value:
+    dictionary of pickup lines as keys and 0 as each value
+    """
+    standardized = standardize_format(list)
+    original_dict = generate_dict(list)
+    standardized_dict = generate_dict(standardized)
     indexes = []
     lines = []
-    for k, v in three.items():
+    for k, v in standardized_dict.items():
         if v not in lines:
             lines.append(v)
             indexes.append(k)
-    r = dict(two)
-    for k,v in two.items():
+    new_dict = dict(original_dict)
+    for k,v in original_dict.items():
         if k not in indexes:
-            # print(r[k])
-            del r[k]
-    pul = r.values()
-    d = OrderedDict(zip(pul,[0 for x in range(0,len(pul))]))
-    return d
+            del new_dict[k]
+    pickup_lines = new_dict.values()
+    return_dict = OrderedDict(zip(pickup_lines,[0 for x in range(0,len(pickup_lines))]))
+    return return_dict
 
-attempt = trial(all_the_pickup_lines)
+### Uses functions defined above to generate the pickup lines dictionary
+attempt = remove_copies(all_the_pickup_lines)
 
+### Pickles the dictionary to be used from other files.
 pickup_pickle = open('pickuplines.pickle','wb')
 pickle.dump(attempt, pickup_pickle)
