@@ -101,7 +101,16 @@ in_class = read_text_file('/home/libby/TindEEEEr/InClassSurveyPickuplines.txt')
 carpe = read_text_file('/home/libby/TindEEEEr/CarpeSurveyPickuplines.txt')
 emma = read_text_file('/home/libby/TindEEEEr/emma_lines.txt')
 more = read_text_file('/home/libby/TindEEEEr/more.txt')
-all_the_pickup_lines = ever + carpe + in_class + emma + more
+random = read_text_file('/home/libby/TindEEEEr/random.txt')
+all_the_pickup_lines = ever + carpe + in_class + emma + more + random
+
+olin = read_text_file('/home/libby/TindEEEEr/Olin.txt')
+star_wars = read_textfile('/home/libby/TindEEEEr/star_wars.txt')
+music = read_text_file('/home/libby/TindEEEEr/music.txt')
+HIMYM = read_text_file('/home/libby/TindEEEEr/HIMYM.txt')
+GOT = read_text_file('/home/libby/TindEEEEr/GOT.txt')
+Disney = read_text_file('/home/libby/TindEEEEr/Disney.txt')
+biochem = read_text_file('/home/libby/TindEEEEr/Biochem.txt')
 
 ### Functions to modify the list into a dictionary
 def standardize_format(list):
@@ -167,7 +176,28 @@ def remove_copies(list):
 
 ### Uses functions defined above to generate the pickup lines dictionary
 attempt = remove_copies(all_the_pickup_lines)
+Olin = remove_copies(olin)
+star_wars = remove_copies(star_wars)
+music = remove_copies(music)
+HIMYM = remove_copies(HIMYM)
+GOT = remove_copies(GOT)
+disney = remove_copies(Disney)
+biochem = remove_copies(biochem)
 
 ### Pickles the dictionary to be used from other files.
 pickup_pickle = open('pickuplines.pickle','wb')
 pickle.dump(attempt, pickup_pickle)
+pickle_olin = open('olinlines.pickle','wb')
+pickle.dump(Olin, pickle_olin)
+pickle_star_wars = open('star_wars.pickle','wb')
+pickle.dump(star_wars, pickle_star_wars)
+pickle_music = open('music.pickle','wb')
+pickle.dump(music, pickle_music)
+pickle_HIMYM = open('HIMYM.pickle','wb')
+pickle.dump(HIMYM, pickle_HIMYM)
+pickle_GOT = open('GOT.pickle','wb')
+pickle.dump(GOT, pickle_GOT)
+pickle_disney = open('disney.pickle','wb')
+pickle.dump(disney, pickle_disney)
+pickle_biochem = open('biochem.pickle','wb')
+pickle.dump(biochem, pickle_biochem)
