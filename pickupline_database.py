@@ -94,6 +94,7 @@ def get_website(link,filename):
 
 ### Uses functions defined above to import all pickup line files and combine them
 ### into one list
+
 get_website('http://pickup-lines.net/','pickup-lines.p')
 html_str = load_html_str("pickup-lines.p")
 ever = create_pickup_list(html_str)
@@ -104,7 +105,7 @@ more = read_text_file('/home/libby/TindEEEEr/more.txt')
 random = read_text_file('/home/libby/TindEEEEr/random.txt')
 all_the_pickup_lines = ever + carpe + in_class + emma + more + random
 
-olin = read_text_file('/home/libby/TindEEEEr/Olin.txt')
+olin = read_text_file('/home/libby/TindEEEEr/olin.txt')
 star_wars = read_text_file('/home/libby/TindEEEEr/StarWars.txt')
 music = read_text_file('/home/libby/TindEEEEr/Music.txt')
 HIMYM = read_text_file('/home/libby/TindEEEEr/HIMYM.txt')
@@ -211,7 +212,7 @@ def remove_copies(list):
     return_dict = OrderedDict(zip(pickup_lines,[0 for x in range(0,len(pickup_lines))]))
     return return_dict
 
-### Uses functions defined above to generate the pickup lines dictionary
+## Uses functions defined above to generate the pickup lines dictionary
 attempt = remove_copies(all_the_pickup_lines)
 Olin = remove_copies(olin)
 star_wars = remove_copies(star_wars)
@@ -222,6 +223,7 @@ disney = remove_copies(Disney)
 biochem = remove_copies(biochem)
 
 ### Pickles the dictionary to be used from other files.
+
 pickup_pickle = open('pickuplines.pickle','wb')
 pickle.dump(attempt, pickup_pickle)
 pickle_olin = open('olinlines.pickle','wb')

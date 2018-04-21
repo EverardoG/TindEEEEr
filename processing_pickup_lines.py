@@ -45,3 +45,5 @@ dict_of_tennis = pickle.load(open('tennis.pickle', 'rb'))
 dict_of_walkingdead = pickle.load(open('walkingdead.pickle', 'rb'))
 dict_of_volleyball = pickle.load(open('volleyball.pickle', 'rb'))
 dict_of_yoga = pickle.load(open('yoga.pickle', 'rb'))
+
+print(dict_of_pizza)
