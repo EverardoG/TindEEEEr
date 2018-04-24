@@ -1,7 +1,6 @@
 from os.path import exists
 import sys
 from pickle import dump, load
-import pickle
 from datamuse import datamuse #may need to pip3 install python-datamuse
 api = datamuse.Datamuse()
 import praw #may need to pip install praw
@@ -14,8 +13,9 @@ import enchant #may need to pip install pyenchant
 import itertools
 import numpy
 
+
 def load_cache(file):
-    cache = pickle.load( open( file, "rb" ) )
+    cache = load( open( file, "rb" ) )
     return cache
 
 def pickle_cache(variable, file_name):
