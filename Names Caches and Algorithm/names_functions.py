@@ -26,54 +26,76 @@ def reset_all():
     global no_lines
     global need_lines
     global bad_lines
+    global match_status_dictionary
+    global PUL_contributors
     dictionary = {}
     no_lines = []
     need_lines = []
-    bad_lines = {} #{name:[list of bad lines]}
+    bad_lines = {}
+    match_status_dictionary = {}
+    PUL_contributors = {}
 
 def see_all():
     print("Dictionary: ", len(dictionary))
     print("No_lines: ", len(no_lines))
     print("Need_lines: ", len(need_lines))
     print("Bad_lines: ", len(bad_lines))
+    print('Match_status_dictionary: ', len(match_status_dictionary))
+    print("PUL_contributors: ", len(PUL_contributors))
     print(dictionary)
     print(no_lines)
     print(need_lines)
     print(bad_lines)
+    print(match_status_dictionary)
+    print(PUL_contributors)
 
 def load_all():
     global dictionary
     global no_lines
     global need_lines
     global bad_lines
+    global match_status_dictionary
+    global PUL_contributors    
     dictionary = load_cache("names_PUL_cache")
     no_lines = load_cache("names_no_lines_cache")
     need_lines = load_cache("names_need_lines_cache")
     bad_lines = load_cache("names_bad_lines_cache")
+    match_status_dictionary = load_cache('names_match_status_dictionary_cache')
+    PUL_contributors = load_cache('names_PUL_contributors_cache')
     print("Dictionary: ", len(dictionary))
     print("No_lines: ", len(no_lines))
     print("Need_lines: ", len(need_lines))
     print("Bad_lines: ", len(bad_lines))
+    print('Match_status_dictionary: ', len(match_status_dictionary))
+    print("PUL_contributors: ", len(PUL_contributors))
 
 def pickle_all():
     global dictionary
     global no_lines
     global need_lines
     global bad_lines
+    global PUL_contributors
+    global match_status_dictionary
     pickle_cache(dictionary, "names_PUL_cache")
     pickle_cache(no_lines, "names_no_lines_cache")
     pickle_cache(need_lines, "names_need_lines_cache")
     pickle_cache(bad_lines, "names_bad_lines_cache")
+    pickle_cache(PUL_contributors, 'names_PUL_contributors_cache')
+    pickle_cache(match_status_dictionary, 'names_match_status_dictionary_cache')
 
 def pickle_all_by_date(date):
     global dictionary
     global no_lines
     global need_lines
     global bad_lines
+    global PUL_contributors
+    global match_status_dictionary
     pickle_cache(dictionary, "names_PUL_cache"+date)
     pickle_cache(no_lines, "names_no_lines_cache"+date)
     pickle_cache(need_lines, "names_need_lines_cache"+date)
     pickle_cache(bad_lines, "names_bad_lines_cache"+date)
+    pickle_cache(PUL_contributors, 'names_PUL_contributors_cache'+date)
+    pickle_cache(match_status_dictionary, 'names_match_status_dictionary_cache'+date)
 
 def recalculate_nolines_and_needlines(dictionary):
     global no_lines
@@ -308,7 +330,7 @@ def pick_PULs_from_database(dictionary_of_PULs):
         return chosen_PUL
 
 
-def recieving_name_request(name):
+def receiving_name_request(name):
     """Returns list of 0-3 pickup-lines. Adds new lines to database"""
     name = name.lower()
     name.strip(" ")
@@ -348,7 +370,7 @@ def update_name_from_internet(name):
     name = name.lower()
     name.strip(" ")
     if not name in dictionary:
-        recieving_name_request(name)
+        receiving_name_request(name)
     else:
         print(name.title()+" is already in the database. It currently has "+str(len(dictionary[name]))+
               " pick-up lines. \n Scraping reddit for new lines...")
@@ -371,8 +393,8 @@ def update_name_from_internet(name):
         else:
             print("No new pick-up lines found online for "+ name +".")
 
-def recieving_weight_modifiers(name, PUL, value_modifier):
-    if PUL in dictionary[name]:
+def receiving_weight_modifiers(name, PUL, value_modifier):
+    try:
         dictionary[name][PUL] += value_modifier
         if dictionary[name][PUL] <= 0:
             if name in bad_lines:
@@ -390,8 +412,11 @@ def recieving_weight_modifiers(name, PUL, value_modifier):
             if len(dictionary[name])<= 0:
                 if not name in no_lines:
                     no_lines.append(name)
+    except:
+        print("Could not find this pick-up line and modify its weight.")
 
 
 if __name__ == "__main__":
     load_all()
-    print(recieving_name_request(sys.argv[1]))
+    print(receiving_name_request(sys.argv[1]))
+    print(dictionary)
