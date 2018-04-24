@@ -55,7 +55,7 @@ def load_all():
     global need_lines
     global bad_lines
     global match_status_dictionary
-    global PUL_contributors    
+    global PUL_contributors
     dictionary = load_cache("names_PUL_cache")
     no_lines = load_cache("names_no_lines_cache")
     need_lines = load_cache("names_need_lines_cache")
@@ -117,8 +117,8 @@ def create_list_of_near_names(name):
             list_of_names.append(i['word'])
     if name not in list_of_names:
         list_of_names.append(name)
-    if len(list_of_names) > 10:
-        list_of_names = list_of_names[:9]
+    if len(list_of_names) > 5:
+        list_of_names = list_of_names[:4]
     return list_of_names
 
 def return_reddit_PULine(name):
@@ -186,6 +186,11 @@ def return_palindrome_PULine(name):
     return [name.title() + " - your name is a palindrome, I like it. I'd do you forwards and backwards"]
 
 def return_anagram_PULine_D(name):
+
+    pickuplines = []
+    if len(name)> 10:
+        return pickuplines
+
     named = name.lower()+'d'
     named = named.strip(' ')
     english_dictionary = enchant.Dict("en_US")
@@ -194,7 +199,6 @@ def return_anagram_PULine_D(name):
     list_of_all_anagrams = ["".join(perm) for perm in itertools.permutations(named)]
 
     list_of_real_anagrams = []
-    pickuplines = []
     spanish = False
     for i in list_of_all_anagrams:
         if english_dictionary.check(i):
@@ -223,6 +227,11 @@ def return_anagram_PULine_D(name):
     return pickuplines
 
 def return_anagram_PULine_V(name):
+
+    pickuplines = []
+    if len(name)> 10:
+        return pickuplines
+
     named = name.lower()+'v'
     named = named.strip(' ')
     english_dictionary = enchant.Dict("en_US")
@@ -231,7 +240,7 @@ def return_anagram_PULine_V(name):
     list_of_all_anagrams = ["".join(perm) for perm in itertools.permutations(named)]
 
     list_of_real_anagrams = []
-    pickuplines = []
+
     spanish = False
     for i in list_of_all_anagrams:
         if english_dictionary.check(i):
