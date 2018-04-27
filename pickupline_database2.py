@@ -1,4 +1,3 @@
-from processing_pickup_lines2 import *
 from pickupline_database import *
 
 def find_text_files():
