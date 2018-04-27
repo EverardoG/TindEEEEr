@@ -45,5 +45,10 @@ dict_of_tennis = pickle.load(open('tennis.pickle', 'rb'))
 dict_of_walkingdead = pickle.load(open('walkingdead.pickle', 'rb'))
 dict_of_volleyball = pickle.load(open('volleyball.pickle', 'rb'))
 dict_of_yoga = pickle.load(open('yoga.pickle', 'rb'))
+# dict_of_all = dict_of_pickup_lines + dict_of_olin + dict_of_star_wars + dict_of_music + dict_of_HIMYM + dict_of_GOT + dict_of_disney + dict_of_biochem + dict_of_accountant + 
+# dict_of_animal + dict_of_art + dict_of_baseball + dict_of_beach + dict_of_basketball + dict_of_books + dict_of_car + dict_of_chocolate + dict_of_coffee + dict_of_doctor + dict_of_dentist + dict_of_dogs
+# dict_of_engineer + dict_of_environmental + dict_of_firefighter + dict_of_fitness + dict_of_golf + dict_of_football + dict_of_history + dict_of_hockey + dict_of_lawyer
+# + dict_of_LOTR + dict_of_math + dict_of_military + dict_of_nerdy + dict_of_pizza + dict_of_policeofficer + dict_of_psychology + dict_of_robot + dict_of_scifi +
+# dict
 
-print(dict_of_pizza)
+print(len(dict_of_pickup_lines))
