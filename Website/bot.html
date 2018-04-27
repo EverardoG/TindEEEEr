@@ -25,44 +25,29 @@
 							</ul>
 						</nav>
 
+						<!--Form -->
+
+						<div class="inner">
+							<header>
+								<form action="/my-handling-form-page" method="post">
+										<div>
+												<label for="name">Please enter one name, keyword, or category. Shorter words are better!</label>
+												<input type="text" placeholder="i.e. Erin, coffee, himym" id="name" name="user_name">  <!--need value="{{request.form.save}}"-->
+										</div>
+								</form>
+							</header>
+							<footer>
+							<button type="submit">Find pick-up line!</button>
+						</footer>
+						</div>
+
 				</div>
 
-      <!--Form -->
 
-      <form action="/my-handling-form-page" method="post">
-          <div>
-              <label for="name">Name:</label>
-              <input type="text" id="name" name="user_name">
-          </div>
-          <div>
-              <label for="mail">Keyword:</label>
-              <input type="email" id="mail" name="user_mail">
-          </div>
-          <div>
-              <label for="msg">Category:</label>
-              <textarea id="msg" name="user_message"></textarea>
-          </div>
-      </form>
 
 
       <!-- Footer -->
 				<div id="footer">
-					<div class="container">
-								<!-- Contact -->
-									<section class="contact">
-										<header>
-											<h3> Want to connect? <a href="#">Contact us.</a></h3>
-										</header>
-										<p>Made with love at Olin College of Engineering.</p>
-										<ul class="icons">
-											<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-											<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-											<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-											<li><a href="#" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
-											<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-											<li><a href="#" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
-										</ul>
-									</section>
 
 								<!-- Copyright -->
 									<div class="copyright">

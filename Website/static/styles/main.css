@@ -1875,10 +1875,7 @@
 		display: block;
 		font-weight: 400;
 		color: #483949;
-		text-align: center;
-		font-size: 2em;
-		color: #fff;
-		margin-bottom: 1em;
+		margin: 0 0 1em 0;
 	}
 
 	form input[type="text"],
@@ -1890,12 +1887,7 @@
 		display: block;
 		border: 0;
 		background: #fafafa;
-		width: 80%;
-		margin-left: auto;
-		margin-right: auto;
-		margin-top: 1em;
-		margin-bottom: 1em;
-		text-align: center;
+		width: 100%;
 		border-radius: 0.5em;
 		border: solid 1px #E5E5E5;
 		padding: 1em;
@@ -2001,7 +1993,6 @@
 		background: #ff655b;
 		color: #fff;
 		text-align: center;
-		font-size: 1em;
 		border-radius: 0.5em;
 		text-decoration: none;
 		padding: 0.65em 3em 0.65em 3em;
@@ -2105,7 +2096,7 @@
 
 	#header {
 		position: relative;
-		background: linear-gradient(#ff5864,  #fd297b, #ff655b);
+		background: -moz-linear-gradient(90deg, #fd297b 0%, #ff5864 50%, #ff655b 100%);
 		background-size: cover;
 		background-position: center center;
 		background-attachment: fixed;
