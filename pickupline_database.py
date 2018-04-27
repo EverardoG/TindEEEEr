@@ -184,8 +184,8 @@ def generate_dict(list):
     for index, pul in enumerate(list):
         keys.append(index)
         values.append(pul)
-        dict = OrderedDict(zip(keys,values))
-    return dict
+        dictionary = dict(zip(keys,values))
+    return dictionary
 
 def remove_copies(list):
     """Uses previous two functions to take the original list of pickup lines and
@@ -209,7 +209,7 @@ def remove_copies(list):
         if k not in indexes:
             del new_dict[k]
     pickup_lines = new_dict.values()
-    return_dict = OrderedDict(zip(pickup_lines,[0 for x in range(0,len(pickup_lines))]))
+    return_dict = dict(zip(pickup_lines,[0 for x in range(0,len(pickup_lines))]))
     return return_dict
 
 ## Uses functions defined above to generate the pickup lines dictionary
@@ -220,6 +220,7 @@ music = remove_copies(music)
 HIMYM = remove_copies(HIMYM)
 GOT = remove_copies(GOT)
 disney = remove_copies(Disney)
+biochem = remove_copies(biochem)
 biochem = remove_copies(biochem)
 
 ### Pickles the dictionary to be used from other files.
