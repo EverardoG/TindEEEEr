@@ -48,7 +48,7 @@ def find_category(related_words):
        for a category of the same name. If it finds one, it returns that
        dictionary.
        """
-    for related_word in related_words:
+    for related_word in related_words: #for every related word
         for category in all_dicts: #for every category dictionary within the main dictionary
             if related_word == category: #if the related word is the same as the name of the category
                 return(all_dicts[related_word]) #return the dictionary of that category
@@ -90,6 +90,8 @@ api = datamuse.Datamuse()
 pickle_files = find_pickled_files()
 all_dicts = get_dicts(pickle_files)
 
+# print(all_dicts)
+
 #taking a keyword and searching for relevant categories
 key_word = standardize_format(input("Beep boop! Give me one key word and I'll give you pickup lines! Beep boop! \n"))
 related_words = get_related_words(key_word)
@@ -105,3 +107,4 @@ if category_dict == False:
 #if a category does exist, the script returns the relevant category
 else:
     print(category_dict)
+# print(all_dicts["accountant"])
