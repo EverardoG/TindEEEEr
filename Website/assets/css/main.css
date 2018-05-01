@@ -1753,6 +1753,13 @@
 			margin: 0 0 2em 0;
 		}
 
+		.image.featured-special {
+			display: block;
+			width: 60%;
+			align-self: center;
+			margin: auto auto 2em auto;
+		}
+
 		.image.left {
 			float: left;
 			margin: 0 2em 2em 0;
@@ -2337,7 +2344,7 @@
 	#banner {
 		background: #fff;
 		text-align: center;
-		padding: 4.5em 0 4.5em 0;
+		padding: 4.5em 0 0 0;
 		margin-bottom: 0;
 	}
 

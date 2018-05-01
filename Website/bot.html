@@ -29,16 +29,15 @@
 
 						<div class="inner">
 							<header>
-								<form action="/my-handling-form-page" method="post">
+								<form action="http://localhost:5000/bot" method="post">
 										<div>
 												<label for="name">Please enter one name, keyword, or category. Shorter words are better!</label>
-												<input type="text" placeholder="i.e. Erin, coffee, himym" id="name" name="user_name">  <!--need value="{{request.form.save}}"-->
+												<input type="text" placeholder="This isn't working yet, but feel free to try typing something!" id="name" name="user_name">  <!--need value="{{request.form.save}}"-->
 										</div>
+										<div></div>
+										<button type="submit">Find pick-up line!</button>
 								</form>
 							</header>
-							<footer>
-							<button type="submit">Find pick-up line!</button>
-						</footer>
 						</div>
 
 				</div>
