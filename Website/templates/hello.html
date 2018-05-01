@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>
-            A Small Hello
-        </title>
-    </head>
-<body>
-    <h1>Hi</h1>
-    <p>This is very minimal "hello world" HTML document.</p>
-</body>
-</html>
+<!doctype html>
+<title>Hello from Flask</title>
+{% if name %}
+    <h1>Hello {{ name }}!</h1>
+{% else %}
+    <h1>Hello World!</h1>
+{% endif %}

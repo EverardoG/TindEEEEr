@@ -5,31 +5,43 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="about_assets/css/main.css" />
+		<link href="about_assets/css/fontawesome-all.min.css" rel="stylesheet">
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<noscript><link rel="stylesheet" href="about_assets/css/noscript.css" /></noscript>
 	</head>
 	<body>
 
+
 		<!-- Wrapper -->
 			<div id="wrapper">
-
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html"><strong>Home</strong></a></li>
+							<li>
+								<a href="about.html"><strong>About</strong></a>
+							</li>
+							<li><a href="https://goo.gl/forms/Vo8YNKbk8uobEFRl1"><strong>Feedback</strong></a></li>
+						</ul>
+					</nav>
 				<!-- Header -->
 					<header id="header">
 						<div class="logo">
-								<img src="images/tinder.png">
+							<!-- <i class="fas fa-fire"></i> -->
+							<span class="icon fa-fire"></span>
+								<!-- <img src="images/tinder.png"> -->
 						</div>
 						<div class="content">
 							<div class="inner">
 								<h1>Learn More</h1>
-								<p>Intro.</p>
 							</div>
 						</div>
 						<nav>
 							<ul>
-								<li><a href="#intro">Our Story</a></li>
-								<li><a href="#work">How it Works</a></li>
-								<li><a href="#about">Try Our Code</a></li>
-								<li><a href="#contact">Contact Us</a></li>
+								<li><a href="#intro"><strong>Our Story</strong></a></li>
+								<li><a href="#work"><strong>How it Works</strong></a></li>
+								<li><a href="#about"><strong>Try Our Code</strong></a></li>
+								<li><a href="#contact"><strong>Coming Soon</strong></a></li>
 								<!--<li><a href="#elements">Elements</a></li>-->
 							</ul>
 						</nav>
@@ -41,7 +53,7 @@
 						<!-- Intro -->
 							<article id="intro">
 								<h2 class="major">Our Story</h2>
-								<span class="image main"><img src="images/cutecumber.jpg" alt="" /></span>
+								<img src="images/cutecumber.jpg" alt="" />
 								<p>This Pick-up Line Generator was developed at Olin College of Engineering as a cumulative project for the spring 2018 class, Software Design. After learning how to utilize software and computation in Python during this introductory class, we wanted to further explore software development focusing on big data and algorithms that adapt with feedback.
 								</p>
 								<p>We thought a good way to explore our interest in big data would be to create a large database of pickup lines scraped from the web. As any pick-up line enthusiast will tell you, the best lines are personalized to the individual’s interests or name. Therefore, we organized our database by relevant pick-up lines for a given category or name. Of course, we wouldn’t be satisfied with the quality of just any relevant pick-up line, so we integrated user feedback as a means of distinguishing good from bad pick-up lines. By adjusting the pick-up lines based on user feedback, we were also able to explore adaptive algorithms.</p>
@@ -49,23 +61,59 @@
 
 						<!-- Work -->
 							<article id="work">
-								<h2 class="major">Work</h2>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								<p>Adipiscing magna sed dolor elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices.</p>
-								<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet feugiat tempus.</p>
+								<h2 class="major">How it Works</h2>
+								<img src="images/architecture1.jpg" alt="" />
 							</article>
 
 						<!-- About -->
 							<article id="about">
-								<h2 class="major">About</h2>
-								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
-								<p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
+								<h2 class="major">Try Our Code</h2>
+								<img src="images/codepul.jpg" alt="" />
+								<h1 id="pick-up-line-bot">Pick-up Line Bot</h1>
+								<p>Pick-up Line Bot is a pick-up line generator that provides individualized pick-up lines based on category or name based inputs.</p>
+								<h2 id="using-pick-up-line-bot">Using Pick-Up Line Bot</h2>
+								<p>You can interact with Pick-Up Line Bot directly on Tinder as soon as we get it up and running again or on our website <a href="tinyurl.com/tinderbot2">here</a>.</p>
+								<h2 id="downloading-and-running-the-code">Downloading and Running the Code</h2>
+								<p>In order to run the Pick-Up Line Bot on your own computer, you must first install the following dependencies. * Datamuse * Praw * PyEnchant * BeautifulSoup4 * RoboBrowser * Pynder You can install them by typing the following into your terminal if running Linux. Note that you will need to have installed pip for this to work effectively. Here’s a <a href="https://www.tecmint.com/install-pip-in-linux/">link</a> that will help with that.</p>
+								<pre><code>$ pip3 install python-datamuse
+$ pip install praw
+$ pip install pyenchant
+$ pip install beautifulsoup4
+$ pip install robobrowser
+$ pip install git+https://github.com/charliewolf/pynder.git</code></pre>
+								<p>Additionally, you should clone our git repository.</p>
+								<pre><code>git clone https://github.com/EverardoG/TindEEEEr</code></pre>
+								<h2 id="getting-started">Getting Started</h2>
+								<p>Once you’ve cloned our repository, navigate to the directory and run categories_mvp.py to run the categories based pick-up line search. To interact with the name based pick-up lines, run names_functions.py with a name as an argument in string format. You can run these by typing:</p>
+								<pre><code>$ python categories_mvp.py</code></pre>
+								<p>for the categories and</p>
+								<pre><code>$ python names_functions.py</code></pre>
+								<p>for the names.</p>
+								<h2 id="description">Description</h2>
+								<p>To learn more about our Bot and it’s makers, read our Implementation and About Us pages at <a href="https://elizabethtawes.github.io/Tinderbot_site/about.html#work">here</a> and <a href="https://elizabethtawes.github.io/Tinderbot_site/about.html#intro">here</a>.</p>
+								<h2 id="attributions">Attributions</h2>
+								<p>We couldn’t make the Pick-up Line Bot on our own! We also had help from Paul Ruvolo, the SoftDes Ninjas, the creators of the various libraries described in the dependencies as well as the many people who have contributed pick-up lines via training or internet posts.</p>
+								<h2 id="license">License</h2>
+								<p>Pick-up Line Bot does not yet have a defined license.</p>
 							</article>
 
 						<!-- Contact -->
 							<article id="contact">
-								<h2 class="major">Contact</h2>
-								<form method="post" action="#">
+								<h2 class="major">Coming Soon</h2>
+								<img src="images/chemistry.jpg" alt="" />
+								<h3>Keyword Searches that create new categories</h3>
+								<img src="images/categoryex.png">
+								<p><em>A snippet from a command terminal near you.</em></p>
+								<p>The keyword "biochem" matched with one of the existing categories in our database to give us this relevant pick-up line! The user can then give feedback to change the frequency of how often this pick-up line is returned in this category search--in this case, it was rated 'good', so its probability has been bumped up. This keyword functionality will be up and running as soon as we integrate it into the Tinder API!</p>
+								<img src="images/olin.png">
+								<p>When there is no existing category for a keyword, our code looks for a similar enough existing category to pull from. In this example, the keyword 'olin' led to the category 'Olin College'.</p>
+								<img src="images/penguin.png">
+								<p>If a related category doesn't exist, the code uses related and 'trigger' words to find pick-up lines in the database that are similar to the keyword, then creates and stores a new category specifically for that keyword. Here, the user asked for 'penguin', and created a new category called 'penguin' in our database, starting with the given pick-up line.</p>
+								<h3>Web App Functionality</h3>
+								<div><img src="images/screenshot.png"></div>
+								<p>We are working on connecting the form in our landing page to the code that makes our Tinderbot functional, through the python framework Flask and cloud-based hosting with Heroku-app. This way, people without a Tinder can still access the pick-up line generator and contribute to the training data!</p>
+								<p>#pickuplinesforthepeople</p>
+								<!-- <form method="post" action="#">
 									<div class="field half first">
 										<label for="name">Name</label>
 										<input type="text" name="name" id="name" />
@@ -75,7 +123,7 @@
 										<input type="text" name="email" id="email" />
 									</div>
 									<div class="field">
-										<label for="message">Message</label>
+										<label for="message">Message (This form does not work yet!)</label>
 										<textarea name="message" id="message" rows="4"></textarea>
 									</div>
 									<ul class="actions">
@@ -84,11 +132,11 @@
 									</ul>
 								</form>
 								<ul class="icons">
-									<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+								  <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 									<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
 									<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
+									<li><a href="https://github.com/EverardoG/TindEEEEr" class="icon fa-github"><span class="label">GitHub</span></a></li>
+								</ul> -->
 							</article>
 
 						<!-- Elements -->
@@ -337,7 +385,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 				<!-- Footer -->
 					<footer id="footer">
-						<p class="copyright">&copy; TinderBot. Design Template: <a href="https://html5up.net">HTML5 UP</a>.</p>
+						<p class="copyright">&copy; TinderBot. Design Template: <a href="https://html5up.net">HTML5 UP</a>. <a href="http://www.wallpapers4u.org/smoke-fire-bright/">Background Image.</a></p>
 					</footer>
 
 			</div>
