@@ -464,13 +464,13 @@ def log(msg):
 
 def start_session():
     try:
-        access_token = get_access_token('contact.businesshaven@gmail.com', 'softdes')
+        access_token = get_access_token('pickupgenerator@gmail.com', 'softdes')
         print('Succeeded in retrieve access token.')
         auth = str(access_token)
     except:
         log('Unable to get retrieve token.')
         try:
-            access_token = get_access_token('contact.businesshaven@gmail.com', 'softdes')
+            access_token = get_access_token('pickupgenerator@gmail.com', 'softdes')
             print('Succeeded in retrieve access token.')
             auth = str(access_token)
         except:
@@ -491,12 +491,13 @@ def start_session():
         log("Session started.")
     except pynder.errors.RequestError:
         log("Session failed. Trying again to start session...")
-        auth = get_access_token(str(contact.businesshaven@gmail.com), str(softdes))
+        auth = get_access_token(str(pickupgenerator@gmail.com), str(softdes))
         try:
             pynder.Session(facebook_id = str(facebook_ID), facebook_token=auth)
             log("Session started.")
         except pynder.errors.RequestError:
-            log("Unable to start session on second try. Shutting down...")
+            log("Unable to start session on second try. Shutting down and pickling...")
+            pickle_all()
             quit()
 
 def add_contributed_PUL_to_contributors(match, PUL, name): #CHECK THIS
@@ -571,6 +572,10 @@ def update_last_time_checked(match):
     match_status_dictionary[match['_id']]['last_time_checked'] = match['messages'][-1]['timestamp']
 
 def send_message(match, message):
+    time.sleep(2)
+    add_space = randint(1,2)
+    if add_space == 1:
+        message = message + " "
     session._api._post('/user/matches/' + match['_id'],
                                 {"message": message})
     time.sleep(1)
@@ -581,7 +586,6 @@ def get_last_message_text(match):
     return match['messages'][-1]['message']
 
 def process_new(match):
-    send_message(match, "BETA TEST (BOT WILL RUN UNTIL 8AM APRIL 24 BEFORE RETURNING TO THE WORKSHOP)")
     send_message(match, "*beep boop* Hello! Thanks for swiping right on me. I will do my best to help you find"+
                 " the perfect pick-up lines! All you need to do is message the word 'help' whenever you need me.")
     change_status_to(match,'idle')
@@ -751,7 +755,9 @@ now = time.time()
 end = now + 18000 # a few hours
 while time.time() < end:
     try:
-        time.sleep(6)
+        sleep_time = randint(15,35)
+        print("Sleeping for ", str(sleep_time), " seconds...")
+        time.sleep(sleep_time)
         pickle_counter += 1
         pickle_by_time_counter += 1
         if pickle_counter > 300:

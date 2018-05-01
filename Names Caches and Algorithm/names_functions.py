@@ -428,4 +428,4 @@ def receiving_weight_modifiers(name, PUL, value_modifier):
 if __name__ == "__main__":
     load_all()
     print(receiving_name_request(sys.argv[1]))
-    print(dictionary)
+    #print(dictionary)
