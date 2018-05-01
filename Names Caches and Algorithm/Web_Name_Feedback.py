@@ -131,6 +131,10 @@ def receiving_weight_modifiers(name, PUL, value_modifier):
     except:
         pass
 
+def main(name, PUL, value_modifier):
+    load_all()
+    receiving_weight_modifiers(name, PUL, value_modifier)
+    pickle_all()
 
 
 if __name__ == "__main__":
@@ -139,6 +143,4 @@ if __name__ == "__main__":
     Output: No output. Modifies database.
 
     """
-    load_all()
-    receiving_weight_modifiers(sys.argv[1], sys.argv[2], sys.argv[3])
-    pickle_all()
+    main(sys.argv[1], sys.argv[2], sys.argv[3])

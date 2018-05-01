@@ -422,9 +422,6 @@ def main(name):
     pickle_all()
     return result
 
-
-
-
 if __name__ == "__main__":
     """
     Takes inputs: 'name'
