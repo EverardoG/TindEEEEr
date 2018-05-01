@@ -83,7 +83,47 @@ def create_category(key_word,trigger_words,all_dicts):
     all_dicts[key_word] = new_category
     return new_category, all_dicts
 
+def serialize_dicts(all_dicts):
+    """
+    Input: all_dicts, the massive dict containing all of the category dicts
+    Output: None
+    This function serializes all of the category dictionaries into pickle files named appropriately"""
+    for category_name in all_dicts.keys():
+        pickle_out = open(category_name+'.pickle','wb')
+        pickle.dump(all_dicts[category_name],pickle_out)
+
+def adjust_weight(user_input, category_name ,category_dict, pickup_line, all_dicts):
+    """
+    Input: yes, no, or wrong as user_input, a key-value pair as pickup_line, the category dictionary the line came from as category_dict, the category name as category_name
+    Output: None
+    This function adjusts the value associated with a pickup line positively if good, nuetrally if okay negatively if bad, and very negatively if wrong"""
+    if user_input not in ["good","bad","okay","wrong"]:
+        return 0
+    elif user_input == "good":
+        adjust = 2
+    elif user_input == "bad":
+        adjust = -2
+    elif user_input == "okay":
+        adjust = 1
+    elif user_input == "wrong":
+        adjust = -4
+    category_dict[pickup_line] += adjust
+    all_dicts[category_name][pickup_line] += adjust
+    return category_dict, all_dicts
+
+
+def find_highest_weight(category_dict):
+    """
+    Input: a dictionary of a given category, category_dict
+    Output: pickupline with the highest weight
+    This function finds the pickup line with the highest associated
+    value in a category dictionary, and returns it."""
+    pul_val = max(category_dict.values())
+    pul = list(category_dict.keys())[list(category_dict.values()).index(pul_val)]
+    return pul
+
 #setting up datamuse api
+
 api = datamuse.Datamuse()
 
 #pickling in the database of pickup lines
@@ -92,19 +132,27 @@ all_dicts = get_dicts(pickle_files)
 
 # print(all_dicts)
 
-#taking a keyword and searching for relevant categories
-key_word = standardize_format(input("Beep boop! Give me one key word and I'll give you pickup lines! Beep boop! \n"))
-related_words = get_related_words(key_word)
-category_dict = find_category(related_words)
+while 1:
+    #taking a keyword and searching for relevant categories
+    key_word = standardize_format(input("Beep boop! Give me one key word and I'll give you pickup lines! Beep boop! \n"))
+    related_words = get_related_words(key_word)
+    category_dict = find_category(related_words)
 
-#if no categories exist, the script makes its own and returns it
-if category_dict == False:
-    print("Hmm... I don't think anyone's asked for that key word before! Let me search around in my bigger database.")
-    trigger_words = get_trigger_words(related_words)
-    new_category, all_dicts = create_category(key_word,trigger_words,all_dicts)
-    print(new_category)
+    #if no categories exist, the script makes its own and returns it
+    if category_dict == False:
+        print("Hmm... I don't think anyone's asked for that key word before! Let me search around in my bigger database.")
+        trigger_words = get_trigger_words(related_words)
+        new_category, all_dicts = create_category(key_word,trigger_words,all_dicts)
+        pul = find_highest_weight(new_category)
+        print(pul)
+        user_input = input("Give me feedback on the pickup line! \n Type good if it was good \n Type okay if it was okay \n Type bad if it was bad \n Type wrong if it was irrelavent")
+        new_category, all_dicts = adjust_weight(user_input, key_word, new_category, pul, all_dicts)
+        serialize_dicts(all_dicts)
 
-#if a category does exist, the script returns the relevant category
-else:
-    print(category_dict)
-# print(all_dicts["accountant"])
+    #if a category does exist, the script returns the relevant category
+    else:
+        pul = find_highest_weight(category_dict)
+        print(pul)
+        user_input = input("Give me feedback on the pickup line! \n Type good if it was good \n Type okay if it was okay \n Type bad if it was bad \n Type wrong if it was irrelavent")
+        category_dict, all_dicts = adjust_weight(user_input, key_word, category_dict, pul, all_dicts)
+        serialize_dicts(all_dicts)
