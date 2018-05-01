@@ -416,6 +416,13 @@ def update_name_from_internet(name):
         else:
             print("No new pick-up lines found online for "+ name +".")
 
+def main(name):
+    load_all()
+    result = receiving_name_request(name)
+    pickle_all()
+    return result
+
+
 
 
 if __name__ == "__main__":
@@ -424,7 +431,5 @@ if __name__ == "__main__":
     Output: List of PULs or 'No Lines.'
 
     """
-    load_all()
-    result = receiving_name_request(sys.argv[1])
-    pickle_all()
+    result = main(sys.argv[1])
     print('\nThe website should recieve this output: ', result, '\n')
