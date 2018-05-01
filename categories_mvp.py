@@ -3,6 +3,8 @@ from processing_pickup_lines2 import *
 from datamuse import datamuse
 import itertools
 import string
+import copy
+import random
 #defining useful functions
 def get_list(dictionary,word):
     rel_words = []
@@ -122,6 +124,55 @@ def find_highest_weight(category_dict):
     pul = list(category_dict.keys())[list(category_dict.values()).index(pul_val)]
     return pul
 
+def find_top_weights(category_dict,num_lines):
+    """
+    Input: a dictionary for given category, category_dict, number of lines you want, num_lines
+    Output: a list of top num_lines pickup lines according to their weights
+    This function takes in category dictionary and a number of lines you want, and returns the top specified number of lines
+    """
+    pul_list = []
+    temp_dict = copy.deepcopy(category_dict)
+    if num_lines == 0:
+        return pul_list, temp_dict
+    for i in range(num_lines):
+        pul = find_highest_weight(temp_dict)
+        pul_list.append(pul)
+        del temp_dict[pul]
+    return pul_list, temp_dict
+
+def find_random(temp_dict,num_lines):
+    """
+    Input: a dictionary for given category, category_dict, number of lines you want, num_lines
+    Output: a list of random num_lines pickup lines
+    This function takes in category dictionary and a number of lines you want, and returns the number of specified random lines
+    """
+    pul_list = []
+    if num_lines == 0:
+        return pul_list, temp_dict
+    for i in range(num_lines):
+        pul = random.choice(list(temp_dict.keys()))
+        pul_list.append(pul)
+        del temp_dict[pul]
+    return pul_list, temp_dict
+
+def check_num_lines(category_dict,num_lines_weight,num_lines_random):
+    """
+    Input: a dictionary for given category, category_dict, the set number of lines for a given weight, num_lines_weight and a number of random lines, num_lines_random
+    Output: num_lines_weight and num_lines_random
+    This function checks whether or not the category of concern contains enough pick up lines to return the number requested by num_lines_random and num_lines_weight and
+    if there are not enough lines, it adjusts num_lines_weight and num_lines_random accordingly
+    """
+    d = length(list(category_dict.keys())) - (num_lines_random + num_lines_weight)
+    if d >= 0:
+        return num_lines_random, num_lines_weight
+    else:
+        num_lines_random += d
+        if num_lines_random < 0:
+            num_lines_weight += num_lines_random
+            num_lines_random = 0
+        return num_lines_random, num_lines_weight
+
+
 #setting up datamuse api
 
 api = datamuse.Datamuse()
@@ -133,6 +184,8 @@ all_dicts = get_dicts(pickle_files)
 # print(all_dicts)
 
 while 1:
+    num_lines_weight = 2
+    num_lines_random = 1
     #taking a keyword and searching for relevant categories
     key_word = standardize_format(input("Beep boop! Give me one key word and I'll give you pickup lines! Beep boop! \n"))
     related_words = get_related_words(key_word)
@@ -143,16 +196,37 @@ while 1:
         print("Hmm... I don't think anyone's asked for that key word before! Let me search around in my bigger database.")
         trigger_words = get_trigger_words(related_words)
         new_category, all_dicts = create_category(key_word,trigger_words,all_dicts)
-        pul = find_highest_weight(new_category)
-        print(pul)
-        user_input = input("Give me feedback on the pickup line! \n Type good if it was good \n Type okay if it was okay \n Type bad if it was bad \n Type wrong if it was irrelavent")
-        new_category, all_dicts = adjust_weight(user_input, key_word, new_category, pul, all_dicts)
-        serialize_dicts(all_dicts)
+
+        num_lines_random, num_lines_weight = check_num_lines(new_category,num_lines_weight,num_lines_random)
+        if num_lines_random + num_lines_weight == 0:
+            print("Whoops, didn't find any relevant pickup lines for that. Feel free to try other words though!")
+
+        pul_list, temp_dict = find_top_weights(new_category,num_lines_weight)
+        for pul in pul_list:
+            print(pul)
+            user_input = input("Give me feedback on the pickup line! \n Type good if it was good \n Type okay if it was okay \n Type bad if it was bad \n Type wrong if it was irrelavent \n")
+            new_category, all_dicts = adjust_weight(user_input, key_word, new_category, pul, all_dicts)
+            serialize_dicts(all_dicts)
+        pul_list, temp_dict = find_random(temp_dict,num_lines_random)
+        for pul in pul_list:
+            print(pul)
+            user_input = input("Give me feedback on the pickup line! \n Type good if it was good \n Type okay if it was okay \n Type bad if it was bad \n Type wrong if it was irrelavent \n")
+            new_category, all_dicts = adjust_weight(user_input, key_word, new_category, pul, all_dicts)
+            serialize_dicts(all_dicts)
 
     #if a category does exist, the script returns the relevant category
     else:
-        pul = find_highest_weight(category_dict)
-        print(pul)
-        user_input = input("Give me feedback on the pickup line! \n Type good if it was good \n Type okay if it was okay \n Type bad if it was bad \n Type wrong if it was irrelavent")
-        category_dict, all_dicts = adjust_weight(user_input, key_word, category_dict, pul, all_dicts)
-        serialize_dicts(all_dicts)
+        # pul = find_highest_weight(category_dict)
+        # print(pul)
+        pul_list, temp_dict = find_top_weights(category_dict,2)
+        for pul in pul_list:
+            print(pul)
+            user_input = input("Give me feedback on the pickup line! \n Type good if it was good \n Type okay if it was okay \n Type bad if it was bad \n Type wrong if it was irrelavent \n")
+            category_dict, all_dicts = adjust_weight(user_input, key_word, category_dict, pul, all_dicts)
+            serialize_dicts(all_dicts)
+        pul_list, temp_dict = find_random(temp_dict,1)
+        for pul in pul_list:
+            print(pul)
+            user_input = input("Give me feedback on the pickup line! \n Type good if it was good \n Type okay if it was okay \n Type bad if it was bad \n Type wrong if it was irrelavent \n")
+            category_dict, all_dicts = adjust_weight(user_input, key_word, category_dict, pul, all_dicts)
+            serialize_dicts(all_dicts)
