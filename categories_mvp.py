@@ -98,7 +98,7 @@ def adjust_weight(user_input, category_name ,category_dict, pickup_line, all_dic
     Output: None
     This function adjusts the value associated with a pickup line positively if good, nuetrally if okay negatively if bad, and very negatively if wrong"""
     if user_input not in ["good","bad","okay","wrong"]:
-        return 0
+        return category_dict, all_dicts
     elif user_input == "good":
         adjust = 2
     elif user_input == "bad":
