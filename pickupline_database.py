@@ -184,8 +184,8 @@ def generate_dict(list):
     for index, pul in enumerate(list):
         keys.append(index)
         values.append(pul)
-        dict = OrderedDict(zip(keys,values))
-    return dict
+        dictionary = dict(zip(keys,values))
+    return dictionary
 
 def remove_copies(list):
     """Uses previous two functions to take the original list of pickup lines and
@@ -209,7 +209,7 @@ def remove_copies(list):
         if k not in indexes:
             del new_dict[k]
     pickup_lines = new_dict.values()
-    return_dict = OrderedDict(zip(pickup_lines,[0 for x in range(0,len(pickup_lines))]))
+    return_dict = dict(zip(pickup_lines,[0 for x in range(0,len(pickup_lines))]))
     return return_dict
 
 ## Uses functions defined above to generate the pickup lines dictionary
@@ -221,6 +221,42 @@ HIMYM = remove_copies(HIMYM)
 GOT = remove_copies(GOT)
 disney = remove_copies(Disney)
 biochem = remove_copies(biochem)
+accountant = remove_copies(accountant)
+animal = remove_copies(animal)
+art = remove_copies(art)
+baseball = remove_copies(baseball)
+beach = remove_copies(beach)
+basketball = remove_copies(basketball)
+books = remove_copies(books)
+car = remove_copies(car)
+chocolate = remove_copies(chocolate)
+coffee = remove_copies(coffee)
+dentist = remove_copies(dentist)
+doctor = remove_copies(doctor)
+dogs = remove_copies(dogs)
+engineer = remove_copies(engineer)
+firefighter = remove_copies(firefighter)
+fitness = remove_copies(fitness)
+golf = remove_copies(golf)
+football = remove_copies(football)
+history = remove_copies(history)
+hockey = remove_copies(hockey)
+lawyer = remove_copies(lawyer)
+LOTR = remove_copies(LOTR)
+math = remove_copies(math)
+military = remove_copies(military)
+nerdy = remove_copies(nerdy)
+pizza = remove_copies(pizza)
+policeofficer = remove_copies(policeofficer)
+psychology = remove_copies(psychology)
+robot = remove_copies(robot)
+scifi = remove_copies(scifi)
+tallperson = remove_copies(tallperson)
+soccer = remove_copies(soccer)
+walkingdead = remove_copies(walkingdead)
+volleyball = remove_copies(volleyball)
+tennis = remove_copies(tennis)
+yoga = remove_copies(yoga)
 
 ### Pickles the dictionary to be used from other files.
 
