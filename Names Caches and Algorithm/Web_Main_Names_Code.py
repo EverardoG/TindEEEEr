@@ -14,8 +14,6 @@ import itertools
 import numpy
 
 
-
-
 def load_cache(file):
     cache = load( open( file, "rb" ) )
     return cache
@@ -58,12 +56,12 @@ def load_all():
     global bad_lines
     global match_status_dictionary
     global PUL_contributors
-    dictionary = load_cache("_names_PUL_cache")
-    no_lines = load_cache("_names_no_lines_cache")
-    need_lines = load_cache("_names_need_lines_cache")
-    bad_lines = load_cache("_names_bad_lines_cache")
-    match_status_dictionary = load_cache('_names_match_status_dictionary_cache')
-    PUL_contributors = load_cache('_names_PUL_contributors_cache')
+    dictionary = load_cache("names_PUL_cache")
+    no_lines = load_cache("names_no_lines_cache")
+    need_lines = load_cache("names_need_lines_cache")
+    bad_lines = load_cache("names_bad_lines_cache")
+    match_status_dictionary = load_cache('names_match_status_dictionary_cache')
+    PUL_contributors = load_cache('names_PUL_contributors_cache')
     print("Dictionary: ", len(dictionary))
     print("No_lines: ", len(no_lines))
     print("Need_lines: ", len(need_lines))
@@ -78,12 +76,12 @@ def pickle_all():
     global bad_lines
     global PUL_contributors
     global match_status_dictionary
-    pickle_cache(dictionary, "_names_PUL_cache")
-    pickle_cache(no_lines, "_names_no_lines_cache")
+    pickle_cache(dictionary, "names_PUL_cache")
+    pickle_cache(no_lines, "names_no_lines_cache")
     pickle_cache(need_lines, "names_need_lines_cache")
-    pickle_cache(bad_lines, "_names_bad_lines_cache")
-    pickle_cache(PUL_contributors, '_names_PUL_contributors_cache')
-    pickle_cache(match_status_dictionary, '_names_match_status_dictionary_cache')
+    pickle_cache(bad_lines, "names_bad_lines_cache")
+    pickle_cache(PUL_contributors, 'names_PUL_contributors_cache')
+    pickle_cache(match_status_dictionary, 'names_match_status_dictionary_cache')
 
 def pickle_all_by_date(date):
     global dictionary
@@ -190,11 +188,11 @@ def return_palindrome_PULine(name):
 def return_anagram_PULine_D(name):
 
     pickuplines = []
-    if len(name)> 8:
+    if len(name)> 10:
         return pickuplines
 
     named = name.lower()+'d'
-    named = named.replace(' ', "")
+    named = named.strip(' ')
     english_dictionary = enchant.Dict("en_US")
     spanish_dictionary = enchant.Dict("es_ES")
 
@@ -231,13 +229,11 @@ def return_anagram_PULine_D(name):
 def return_anagram_PULine_V(name):
 
     pickuplines = []
-    if len(name)> 8:
-        print("Name is too long for anagrams.")
+    if len(name)> 10:
         return pickuplines
 
     named = name.lower()+'v'
-    named = named.replace(" ", "")
-    named = named.replace(string.punctuation, "")
+    named = named.strip(' ')
     english_dictionary = enchant.Dict("en_US")
     spanish_dictionary = enchant.Dict("es_ES")
 
@@ -342,23 +338,14 @@ def pick_PULs_from_database(dictionary_of_PULs):
         chosen_PUL = list(numpy.random.choice(lines,size=3,replace=False, p=weights))
         return chosen_PUL
 
-def is_name(name):
-    if name in ["", " ", "   ", "no"] or len(name) <= 1:
-        return False
-    else:
-        return True
 
 def receiving_name_request(name):
     """Returns list of 0-3 pickup-lines. Adds new lines to database"""
     name = name.lower()
-    name = name.replace(" ", "")
-    if not is_name(name):
-        return 'No Lines.'
-    for i in string.punctuation:
-        name = name.replace(i, "")
+    name.strip(" ")
     if name in no_lines:
         print(name.title()+" is in no_lines list.")
-        return 'No Lines.'
+        return 'Give General.'
     else:
         if name in dictionary:
             print("Giving pick-up lines from database for "+name+".")
@@ -373,7 +360,7 @@ def receiving_name_request(name):
                     no_lines.append(name)
                 if not name in need_lines:
                     need_lines.append(name)
-                return 'No Lines.'
+                return 'Give General.'
             else:
                 print("Found "+str(len(names_PUL_from_internet))+" pick-up lines online for "+name.title()+
                       ". Adding to database now.")
@@ -390,8 +377,7 @@ def update_name_from_internet(name):
     if name == '' or name == " ":
         return 'No Input.'
     name = name.lower()
-    name = name.replace(" ", "")
-    name = name.replace(string.punctuation, "")
+    name.strip(" ")
     if not name in dictionary:
         receiving_name_request(name)
     else:
@@ -416,16 +402,29 @@ def update_name_from_internet(name):
         else:
             print("No new pick-up lines found online for "+ name +".")
 
+def receiving_weight_modifiers(name, PUL, value_modifier):
+    try:
+        dictionary[name][PUL] += value_modifier
+        if dictionary[name][PUL] <= 0:
+            if name in bad_lines:
+                if not PUL in bad_lines[name]:
+                    bad_lines[name].append(PUL)
+            else:
+                bad_lines[name] = [PUL]
+            try:
+                del dictionary[name][PUL]
+            except:
+                print(PUL+" was already deleted.")
+            if len(dictionary[name])<= 3:
+                if not name in need_lines:
+                    need_lines.append(name)
+            if len(dictionary[name])<= 0:
+                if not name in no_lines:
+                    no_lines.append(name)
+    except:
+        print("Could not find this pick-up line and modify its weight.")
 
 
 if __name__ == "__main__":
-    """
-    Takes inputs: 'name'
-    Output: List of PULs or 'No Lines.'
-
-    """
     load_all()
-    result = receiving_name_request(sys.argv[1])
-    pickle_all()
-    print('\nThe website should recieve this output: ', result, '\n')
-    #print(dictionary)
+    print(receiving_name_request(sys.argv[1]))

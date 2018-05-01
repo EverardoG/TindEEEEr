@@ -428,4 +428,3 @@ if __name__ == "__main__":
     result = receiving_name_request(sys.argv[1])
     pickle_all()
     print('\nThe website should recieve this output: ', result, '\n')
-    #print(dictionary)
