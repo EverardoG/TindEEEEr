@@ -107,6 +107,11 @@ def grab_random_name_from_no_lines_or_need_lines():
     except:
         return 'No names need training.'
 
+def main():
+    load_all()
+    result = grab_random_name_from_no_lines_or_need_lines()
+    return result
+
 
 if __name__ == "__main__":
     """
@@ -114,6 +119,5 @@ if __name__ == "__main__":
     Output: Random 'name' that needs PULs or 'No names need training.'
 
     """
-    load_all()
-    result = grab_random_name_from_no_lines_or_need_lines()
+    result = main()
     print('\nThe website should recieve this output: ', result, '\n')
