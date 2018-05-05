@@ -1728,6 +1728,71 @@
 		margin: 2.5em 0 0 0;
 	}
 
+  footer button{
+		text-align: center;
+		display: inline-block;
+		width: 3em;
+		height: 3em;
+		padding: 2em 2em;
+		object-fit: contain;
+		background-size: 3em 3em;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+
+	footer button#smile:hover{
+		display: text;
+	}
+
+	.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+	border-radius: 0.5em;
+	border: 0;
+	cursor: pointer;
+  transition: 1s ease;
+  background-color: #ef8376;
+	opacity: 0;
+}
+
+.text {
+	font-size: 1em;
+	text-decoration: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+	font-weight: 300;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+footer button:hover .overlay {
+  opacity: 1;
+}
+
+	footer button#smile{
+		background-image: url(/home/emma/Tinder/Website/images/happy.png);
+	}
+
+	footer button#sad{
+		background-image: url(/home/emma/Tinder/Website/images/sad.png);
+	}
+
+	footer button#ok{
+		background-image: url(/home/emma/Tinder/Website/images/neutral.png);
+	}
+
+	footer button#wrong{
+		background-image: url(/home/emma/Tinder/Website/images/wrong.png);
+	}
+
+
 /* Image */
 
 	.image {
@@ -2714,7 +2779,16 @@
 				margin-bottom: 2em;
 			}
 
-				section:last-child, article:last-child {
+			section, article#display {
+				float: center;
+				display: block;
+				margin-top: 0;
+				margin-left: auto;
+				margin-right: auto;
+				align-items: center;
+			}
+
+			section:last-child, article:last-child {
 					margin-bottom: 0;
 				}
 
