@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Tinderbot!</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="/static/about_assets/fontawesome-all.min.css"/>
+		<link rel="stylesheet" href="/static/assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body class="homepage">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="{{ url_for('index')}}">Home</a></li>
+								<li>
+									<a href="{{ url_for('about')}}">About</a>
+								</li>
+								<li><a href="https://goo.gl/forms/Vo8YNKbk8uobEFRl1">Feedback</a></li>
+							</ul>
+						</nav>
+
+						<!--Display-->
+            <div class="inner">
+						{% for PUL in PULs %}
+									<article class="display">
+    								<header>
+    									<h3 id="PUL">{{ PUL }}</h3>
+    								</header>
+                    <footer>
+											<form name="train_form" method="post">
+												<button class="container-sp" id="smile">
+													<!-- <input type="radio" name="training" value="good"> -->
+												  <span class="overlay"><div class="text">Good</div></span>
+												</button>
+												<input type="radio" name="training" value="good">
+												<button class="container-sp" id="ok">
+												  <!-- <input type="radio" name="training" value="ok"> -->
+												  <div class="overlay"><div class="text">Ok</div></div>
+												</button>
+												<input type="radio" name="training" value="ok">
+												<button class="container-sp" id="sad">
+												  <!-- <input type="radio" name="training" value="bad"> -->
+												  <div class="overlay"><div class="text">Bad</div></div>
+												</button>
+												<input type="radio" name="training" value="bad">
+												<button class="container-sp" id="wrong">
+												  <!-- <input type="radio" name="training" value="wrong"> -->
+												  <div class="overlay"><div class="text">Just Wrong</div></div>
+												</button>
+												<input type="radio" name="training" value="wrong">
+												<button class="container-sp" type="submit">Submit</button>
+											</form>
+                    </footer>
+    							</article>
+									{% endfor %}
+              <div class="footer">
+                <a href="{{ url_for('bot')}}"><button type="submit">Again!</button></a>
+                <button>Help train the bot!</button>
+              </div>
+            </div>
+
+				</div>
+
+
+
+
+      <!-- Footer -->
+				<div id="footer">
+
+								<!-- Copyright -->
+									<div class="copyright">
+										<ul class="menu">
+											<li>&copy; TinderBot. All rights reserved.</li><li>Template Design: <a href="http://html5up.net">HTML5 UP</a></li>
+										</ul>
+									</div>
+
+						</div>
+					</div>
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="/static/assets/js/jquery.min.js"></script>
+			<script src="/static/assets/js/jquery.dropotron.min.js"></script>
+			<script src="/static/assets/js/jquery.scrolly.min.js"></script>
+			<script src="/static/assets/js/jquery.onvisible.min.js"></script>
+			<script src="/static/assets/js/skel.min.js"></script>
+			<script src="/static/assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="/static/assets/js/main.js"></script>
+
+	</body>
+</html>
