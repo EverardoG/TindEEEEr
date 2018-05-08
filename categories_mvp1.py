@@ -55,6 +55,7 @@ def find_category(related_words):
        for a category of the same name. If it finds one, it returns that
        dictionary.
        """
+    all_dicts = initialize_all_dicts()
     for related_word in related_words: #for every related word
         for category in all_dicts: #for every category dictionary within the main dictionary
             if related_word == category: #if the related word is the same as the name of the category
@@ -199,11 +200,13 @@ def give_pickup_lines(key_word,num_lines_weight = 2,num_lines_random = 1):
         new_category, all_dicts = create_category(key_word,trigger_words,all_dicts)
         num_lines_random, num_lines_weight = check_num_lines(new_category,num_lines_weight,num_lines_random)
         pul_list, temp_dict = find_top_weights(new_category,num_lines_weight)
-
+        pul_list1, temp_dict = find_random(temp_dict,num_lines_random)
+        pul_list += pul_list1
     else:
         num_lines_random, num_lines_weight = check_num_lines(category_dict,num_lines_weight,num_lines_random)
         pul_list, temp_dict = find_top_weights(category_dict,num_lines_weight)
-
+        pul_list1, temp_dict = find_random(temp_dict,num_lines_random)
+        pul_list += pul_list1
     return pul_list, category_dict
 
 def adjust_weight_web(adjust, key_word ,category_dict, pickup_line, all_dicts):
@@ -216,6 +219,10 @@ def adjust_weight_web(adjust, key_word ,category_dict, pickup_line, all_dicts):
     all_dicts[key_word][pickup_line] += adjust
     return category_dict, all_dicts
 
+def main(key_word):
+    all_dicts = initialize_all_dicts()
+    list_and_cat = give_pickup_lines(key_word)
+    return list_and_cat
 #
 # adjust =1
 # key_word = "coffee"
