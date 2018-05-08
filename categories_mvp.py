@@ -200,7 +200,7 @@ def give_pickup_lines(key_word,num_lines_weight = 2,num_lines_random = 1):
 
     return pul_list, category_dict
 
-def adjust_weight(adjust, key_word ,category_dict, pickup_line, all_dicts):
+def adjust_weight_web(adjust, key_word ,category_dict, pickup_line, all_dicts):
     """
     Input: yes, no, or wrong as user_input, a key-value pair as pickup_line, the category dictionary the line came from as category_dict, the category name as category_name
     Output: None
