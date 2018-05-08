@@ -41,6 +41,7 @@ def get_trigger_words(related_words,n = 10):
     """Input: list of related_words, n
        Output: list containing all of the related words, as well as n trigger words per related words
        """
+    api = datamuse.Datamuse()
     trigger_words =[]
     trigger_words += related_words
     trigger_words += (get_list(api.words(rel_trg = key_word, max = n),key_word))
