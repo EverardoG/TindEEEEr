@@ -2,7 +2,7 @@
 Pick-up Line Bot is a pick-up line generator that provides individualized pick-up lines based on category or name based inputs. 
 
 ## Using Pick-Up Line Bot
-You can interact with Pick-Up Line Bot directly on Tinder as soon as we get it up and running again or on our website [here](https://elizabethtawes.github.io/Tinderbot_site/). 
+You can interact with Pick-Up Line Bot directly on Tinder as soon as we get it up and running again or on our website [here](https://pickuplinebot.herokuapp.com/). 
 
 ## Downloading and Running the Code
 In order to run the Pick-Up Line Bot on your own computer, you must first install the following dependencies.
