@@ -1601,6 +1601,10 @@
 		font-size: 1.25em;
 	}
 
+	h3#PUL {
+		color: #fff;
+	}
+
 	h4 {
 		font-size: 1em;
 		margin: 0 0 0.25em 0;
@@ -1740,10 +1744,6 @@
 		background-position: center;
 	}
 
-	footer button#smile:hover{
-		display: text;
-	}
-
 	.overlay {
   position: absolute;
   top: 0;
@@ -1777,21 +1777,46 @@ footer button:hover .overlay {
 }
 
 	footer button#smile{
-		background-image: url(/home/emma/Tinder/Website/images/happy.png);
+		background-image: url(https://cdn.iconscout.com/public/images/icon/free/png-512/face-smile-happy-emoji-39f978390f86ad27-512x512.png);
+		/* If this doesn't work on Heroku, use urls*/
 	}
 
 	footer button#sad{
-		background-image: url(/home/emma/Tinder/Website/images/sad.png);
+		background-image: url(https://cdn.iconscout.com/public/images/icon/free/png-512/face-frown-big-sad-emoji-3615d98598f9cedc-512x512.png);
 	}
 
 	footer button#ok{
-		background-image: url(/home/emma/Tinder/Website/images/neutral.png);
+		background-image: url(https://cdn.iconscout.com/public/images/icon/free/png-512/deadpan-face-neutral-sad-emoji-365402ed0fa89a04-512x512.png);
 	}
 
 	footer button#wrong{
-		background-image: url(/home/emma/Tinder/Website/images/wrong.png);
+		background-image: url(http://www.clker.com/cliparts/1/1/9/2/12065738771352376078Arnoud999_Right_or_wrong_5.svg.hi.png);
 	}
 
+.container-sp{
+	text-align: center;
+	display: inline-block;
+	width: 3em;
+	height: 3em;
+	padding: 2em 2em;
+	object-fit: contain;
+	background-size: 3em 3em;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+	/* Hide the browser's default radio button */
+.container-sp input {
+  opacity: 0;
+	width: 3em;
+	height: 3em;
+	align-self: center;
+}
+
+form input[type="radio"] {
+	width: 3em;
+	height: 3em;
+}
 
 /* Image */
 
@@ -2779,10 +2804,11 @@ footer button:hover .overlay {
 				margin-bottom: 2em;
 			}
 
-			section, article#display {
+			.display {
 				float: center;
 				display: block;
-				margin-top: 0;
+				margin-bottom: 2em;
+				margin-top: 0em;
 				margin-left: auto;
 				margin-right: auto;
 				align-items: center;
