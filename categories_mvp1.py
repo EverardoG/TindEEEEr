@@ -37,7 +37,7 @@ def get_related_words(key_word,n = 10):
     related_words += (get_list(api.words(ml = key_word, max = n),key_word))
     return related_words
 
-def get_trigger_words(related_words,n = 10):
+def get_trigger_words(related_words,n = 10,key_word):
     """Input: list of related_words, n
        Output: list containing all of the related words, as well as n trigger words per related words
        """
@@ -197,7 +197,7 @@ def give_pickup_lines(key_word,num_lines_weight = 2,num_lines_random = 1):
     category_dict = find_category(related_words)
 
     if category_dict == False:
-        trigger_words = get_trigger_words(related_words)
+        trigger_words = get_trigger_words(related_words,10,key_word)
         new_category, all_dicts = create_category(key_word,trigger_words,all_dicts)
         num_lines_random, num_lines_weight = check_num_lines(new_category,num_lines_weight,num_lines_random)
         pul_list, temp_dict = find_top_weights(new_category,num_lines_weight)
