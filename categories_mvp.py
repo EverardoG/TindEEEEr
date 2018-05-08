@@ -24,7 +24,7 @@ def standardize_format(word):
     word = word.lower()
     return word
 
-def get_related_words(keyword,n = 10):
+def get_related_words(key_word,n = 10):
     """Input: keyword, n
        Output: list containing keyword and up to n related words (10 by default)"""
     related_words = []
@@ -209,6 +209,7 @@ def adjust_weight_web(adjust, key_word ,category_dict, pickup_line, all_dicts):
     category_dict[pickup_line] += adjust
     all_dicts[category_name][pickup_line] += adjust
     return category_dict, all_dicts
+
 
 ######################################################################
 # Uncommment everything below to run this locally
