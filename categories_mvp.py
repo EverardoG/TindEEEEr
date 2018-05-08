@@ -185,6 +185,7 @@ def give_pickup_lines(key_word,num_lines_weight = 2,num_lines_random = 1):
     num_lines_weight - how many relevant pickup lines you want based on weights
     num_lines_random - how many relevant pickup lines you want that are random
     """
+    api = datamuse.Datamuse()
     related_words = get_related_words(key_word)
     category_dict = find_category(related_words)
 
