@@ -27,6 +27,7 @@ def standardize_format(word):
 def get_related_words(key_word,n = 10):
     """Input: keyword, n
        Output: list containing keyword and up to n related words (10 by default)"""
+    api = datamuse.Datamuse()
     related_words = []
     related_words.append(key_word)
     related_words += (get_list(api.words(ml = key_word, max = n),key_word))
